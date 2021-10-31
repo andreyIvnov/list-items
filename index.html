@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        text-align: center;
+    }
+</style>
+
+<body>
+    <script type="text/javascript">
+        var url = "http://localhost:4200/test";
+        function test() {
+            fetch(url).then(response => response.json())
+                .then((result) => {
+                    console.log('success:', result)
+                    drow(result)
+                })
+                .catch(error => console.log('error:', error));
+
+        }
+
+
+        //create function to drow 
+        function drow(subData) {
+            let h2 = document.getElementById('test');
+            let html = ''
+            html += drowSubData(html, subData.res)
+            h2.innerHTML = html;
+
+        }
+        function drowSubData(html, subData) {
+            console.log("html", html);
+            for (let m of subData) {
+//  
+                html += `<div class="left">
+                                            ID: ${m.id}<br>
+                                            Site Name: ${m.name}<br>
+                                            <a target="_blank" rel="noopener noreferrer" href="https//${m.url}">Site Url: ${m.name}</a><br>
+                                        </div>`
+                if (m.subData) {
+               //     console.log("subData", m.subData);
+                  html=  drowSubData(html + "<br>", m.subData)
+                }
+            }
+            return html;
+        }
+        test()
+
+    </script>
+    <h2 id="test"></h2>
+</body>
+
+</html>
