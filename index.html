@@ -6,12 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- <link rel="stylesheet" href="./style.css"> -->
+    <style>
+        div.left {
+            margin-left: auto;
+            margin-right: auto;
+            width: 15em;
+            background-color: lightblue;
+            border: 2px solid green;
+            border-radius: 8px;
+            padding: 5px;
+        }
+    </style>
 </head>
-<style>
-    body {
-        text-align: center;
-    }
-</style>
 
 <body>
     <script type="text/javascript">
@@ -29,24 +36,26 @@
 
         //create function to drow 
         function drow(subData) {
-            let h2 = document.getElementById('test');
+            let p1 = document.getElementById('test');
+            ///cut of 1-7 and 8-21 by 2 components
+            let p2 = document.getElementById('test2');
             let html = ''
             html += drowSubData(html, subData.res)
-            h2.innerHTML = html;
+            p1.innerHTML = html;
 
         }
         function drowSubData(html, subData) {
-            console.log("html", html);
+            // console.log("html", html);
             for (let m of subData) {
-//  
+                //  
                 html += `<div class="left">
-                                            ID: ${m.id}<br>
-                                            Site Name: ${m.name}<br>
-                                            <a target="_blank" rel="noopener noreferrer" href="https//${m.url}">Site Url: ${m.name}</a><br>
-                                        </div>`
+                            Id: ${m.id}<br>
+                            Site Name: ${m.name}<br>
+                            <a target="_blank"  href="https://${m.url}">Site Url: ${m.name}</a><br>
+                        </div>`
                 if (m.subData) {
-               //     console.log("subData", m.subData);
-                  html=  drowSubData(html + "<br>", m.subData)
+                    //     console.log("subData", m.subData);
+                    html = drowSubData(html, m.subData)
                 }
             }
             return html;
@@ -54,7 +63,11 @@
         test()
 
     </script>
-    <h2 id="test"></h2>
+
+
+    <p id="test"></p>
+    <p id="test2"></p>
+
 </body>
 
 </html>
