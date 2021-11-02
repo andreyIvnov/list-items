@@ -1,8 +1,8 @@
 const express = require('express'); //Import the express dependency
-const app = express();              //Instantiate an express app, the main work horse of this server
-const port = 4200;                  //Save the port number where your server will be listening
+const app = express();              //Instantiate an express app
+const port = 4200;                  //The port number where server will be listening
 const json = require('./links.json')
-//Idiomatic expression in express to route and respond to a client request
+//Idiomatic expression in express to route and respond to a client request (Routing)
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html');
 });

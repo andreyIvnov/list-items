@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- <link rel="stylesheet" href="./style.css"> -->
     <style>
         div.left {
             margin-left: auto;
@@ -23,6 +22,8 @@
 <body>
     <script type="text/javascript">
         var url = "http://localhost:4200/test";
+        
+        //function to get a data from .json file
         function test() {
             fetch(url).then(response => response.json())
                 .then((result) => {
@@ -33,38 +34,41 @@
 
         }
 
-
-        //create function to drow 
+        //adding a data to <p> component
         function drow(subData) {
             let p1 = document.getElementById('test');
-            ///cut of 1-7 and 8-21 by 2 components
-            let p2 = document.getElementById('test2');
             let html = ''
             html += drowSubData(html, subData.res)
             p1.innerHTML = html;
 
         }
+
+        //get info from subData
         function drowSubData(html, subData) {
             // console.log("html", html);
             for (let m of subData) {
-                //  
+                // if(subData.length > 1){return}
                 html += `<div class="left">
                             Id: ${m.id}<br>
                             Site Name: ${m.name}<br>
                             <a target="_blank"  href="https://${m.url}">Site Url: ${m.name}</a><br>
                         </div>`
+                        
                 if (m.subData) {
                     //     console.log("subData", m.subData);
                     html = drowSubData(html, m.subData)
                 }
+                
             }
             return html;
         }
+        
+        
         test()
 
     </script>
 
-
+    
     <p id="test"></p>
     <p id="test2"></p>
 
